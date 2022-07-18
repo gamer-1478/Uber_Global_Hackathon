@@ -12,18 +12,18 @@ const reqString = { type: String, required: true },
 // Schema
 const pharmaSchema = new mongoose.Schema(
   {
-    mainPubKey: reqString,
-    fingerPubKey: reqStringFalse,
+    // mainPubKey: reqString,
+    // fingerPubKey: reqStringFalse,
     email: reqString,
     phone: reqStringFalse,
-    // dateCreated: { type: Date, default: dateStringWithTime },
     address: reqString,
     city: reqString,
     state: reqString,
     zip: reqString,
     country: reqString,
-    firstName: reqString,
-    lastName: reqString,
+    name: reqString,
+    username: reqString,
+    password: reqString,
   },
   { timestamps: true }
 );

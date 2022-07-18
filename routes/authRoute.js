@@ -5,13 +5,14 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/register", (req, res) => {
-  res.render("register");
+// Pharma Section
+router.get("/pharma/register", (req, res) => {
+  res.render("pharma/register");
 });
 
-router.post("/register", async (req, res) => {
-  // how to filter patient , hosp and pharma ???
-  return await auth.register(req, res);
+router.post("/pharma/register", async (req, res) => {
+  console.log("router");
+  return await auth.registerPharma(req, res);
 });
 
 router.post("/login", async (req, res) => {
