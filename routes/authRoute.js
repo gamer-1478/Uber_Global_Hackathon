@@ -15,6 +15,15 @@ router.post("/pharma/register", async (req, res) => {
   return await auth.registerPharma(req, res);
 });
 
+// Hospital Section
+router.get("/hospital/register", (req, res) => {
+  res.render("hospital/register");
+});
+
+router.post("/hospital/register", (req, res) => {
+  return auth.registerHospital(req, res);
+});
+
 router.post("/login", async (req, res) => {
   return await auth.login(req, res);
 });

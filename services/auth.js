@@ -2,10 +2,10 @@ const pharma = require("../schemas/pharmaSchema");
 const jwt = require("jsonwebtoken");
 const { SendError } = require("../services/error");
 const bcrypt = require("bcryptjs");
+const hospital = require("../schemas/hospitalSchema");
 
 module.exports = {
   registerPharma: async (req, res) => {
-    console.log("registerPharma");
     const {
       // mainPubKey,
       // fingerPubKey,
@@ -26,8 +26,7 @@ module.exports = {
         message: "Email is not valid",
       });
     }
-    console.log(password);
-    console.log(confirmpassword);
+
     if (password !== confirmpassword) {
       return res.status(400).json({
         message: "Passwords do not match",
@@ -139,6 +138,76 @@ module.exports = {
       return res.send({
         status: "error",
         message: "Some error occurred",
+      });
+    }
+  },
+  registerHospital: async (req, res) => {
+    const {
+      // mainPubKey,
+      // fingerPubKey,
+      email,
+      phone,
+      address,
+      city,
+      state,
+      zip,
+      country,
+      name,
+      username,
+      password,
+    } = req.body;
+    if (email.includes("@") === false) {
+      return res.status(400).json({
+        message: "Email is not valid",
+      });
+    } else if (password.length < 8) {
+      return res.status(400).json({
+        message: "Password must be at least 8 characters",
+      });
+    }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const newHospital = new hospital({
+      // mainPubKey,
+      // fingerPubKey,
+      email,
+      phone,
+      address,
+      city,
+      state,
+      zip,
+      country,
+      name,
+      username,
+      password: hashedPassword,
+    });
+    try {
+      const savedHospital = await newHospital.save();
+      const token = jwt.sign(
+        {
+          id: savedHospital._id,
+          email: savedHospital.email,
+          name: savedHospital.name,
+          address: savedHospital.address,
+        },
+        process.env.JWT_TOKEN
+      );
+      res.cookie("token", token, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+        sameSite: "strict",
+        secure: true,
+      });
+      return res.status(200).json({
+        message: "Hospital registered successfully",
+        data: savedHospital,
+      });
+    } catch (err) {
+      console.log(err);
+      SendError(err.stack.toString());
+      res.status(500).json({
+        message: "Error registering hospital",
+        error: err,
       });
     }
   },
