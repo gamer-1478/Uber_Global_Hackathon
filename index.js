@@ -9,8 +9,8 @@ const express = require("express"),
 
 //files
 const { SendError } = require("./services/error"),
-  indexRouter = require("./routes/indexRoute");
-authRouter = require("./routes/authRoute");
+  indexRouter = require("./routes/indexRoute"),
+  authRouter = require("./routes/authRoute");
 
 //declerations
 const link = `mongodb+srv://techsyndicate:${process.env.MONGO_PASS}@cluster0.lfkkma3.mongodb.net/?retryWrites=true&w=majority`;
