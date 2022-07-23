@@ -1,5 +1,6 @@
 var notyf = new Notyf();
 const registerBtn = document.querySelector("#register-btn");
+
 registerBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   // const mainPubKey = document.querySelector("#main-pub-key").value;
@@ -15,7 +16,7 @@ registerBtn.addEventListener("click", async (e) => {
   const username = document.querySelector("#username").value;
   const password = document.querySelector("#password").value;
   const confirmpassword = document.querySelector("#confirmPassword").value;
-  fetch("/pharma/register", {
+  fetch("/hospital/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
