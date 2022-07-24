@@ -4,6 +4,7 @@ const { SendError } = require("../services/error");
 const bcrypt = require("bcryptjs");
 const hospital = require("../schemas/hospitalSchema");
 const doctor = require("../schemas/doctorSchema");
+const User = require("../schemas/userSchema");
 
 module.exports = {
   registerPharma: async (req, res) => {
@@ -299,5 +300,20 @@ module.exports = {
         error: err,
       });
     }
+  },
+  registerUser: async (req, res) => {
+    const { email, password } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const newUser = new User({
+      email,
+      password: hashedPassword,
+    });
+    newUser.save().then((user) => {
+      res.status(200).json({
+        message: "User registered successfully",
+        data: user,
+      });
+    });
   },
 };
