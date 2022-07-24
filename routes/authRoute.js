@@ -21,6 +21,15 @@ router.post("/hospital/register", (req, res) => {
   return auth.registerHospital(req, res);
 });
 
+// Doctor Section
+router.get("/doctor/register", (req, res) => {
+  res.render("doctor/register");
+});
+
+router.post("/doctor/register", (req, res) => {
+  return auth.registerDoctor(req, res);
+});
+
 router.post("/login", async (req, res) => {
   return await auth.login(req, res);
 });
