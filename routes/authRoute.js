@@ -7,7 +7,7 @@ router.get("/login", (req, res) => {
 
 // Pharma Section
 router.get("/pharma/register", (req, res) => {
-  res.render("pharma/register");
+  res.render("pharma/register", {title: "Register"});
 });
 
 router.post("/pharma/register", async (req, res) => {

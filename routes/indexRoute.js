@@ -5,7 +5,12 @@ const auth = require("../services/auth");
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-  res.send("Hello World");
+  res.render('index.ejs', { title: "Displicare" });
 });
+
+router.get("/register", (req, res) => {
+  res.render('register.ejs', { title: "Registeration" });
+});
+
 
 module.exports = router;

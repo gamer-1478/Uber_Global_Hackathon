@@ -5,7 +5,8 @@ const express = require("express"),
   ejs = require("ejs"),
   path = require("path"),
   cookieParser = require("cookie-parser"),
-  mongoose = require("mongoose");
+  mongoose = require("mongoose"),
+  expressLayouts = require('express-ejs-layouts');
 
 //files
 const { SendError } = require("./services/error"),
@@ -18,6 +19,7 @@ const PORT = process.env.PORT || 3000;
 
 //middle ware
 app.use(express.json());
+app.use(expressLayouts);
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.set("view engine", "ejs");
