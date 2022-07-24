@@ -1,8 +1,13 @@
 const auth = require("../services/auth");
 const router = require("express").Router();
 
-router.post("/login", async (req, res) => {
-  return await auth.login(req, res);
+router.get("/register", (req, res) => {
+  res.render('register.ejs', { title: "Registeration" });
 });
+
+router.get("/login", (req, res) => {
+  res.render("login", { title: "Login" });
+});
+
 
 module.exports = router;

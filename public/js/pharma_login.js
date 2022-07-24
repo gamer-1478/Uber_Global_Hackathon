@@ -5,7 +5,7 @@ loginBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
-  fetch("/login", {
+  fetch("/pharma/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

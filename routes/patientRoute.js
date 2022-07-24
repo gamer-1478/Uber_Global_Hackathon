@@ -10,6 +10,11 @@ router.get("/patient/login", (req, res) => {
     res.render("patient/login", { title: "Patient Login" });
 });
 
+
+router.post("/patient/login", async (req, res) => {
+    return await auth.loginPatient(req, res);
+});
+
 router.post("/patient/register", async (req, res) => {
     console.log("router");
     return await auth.registerPatient(req, res);
