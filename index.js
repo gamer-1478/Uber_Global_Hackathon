@@ -11,6 +11,9 @@ const express = require("express"),
 //files
 const { SendError } = require("./services/error"),
   indexRouter = require("./routes/indexRoute"),
+  pharmaRouter = require("./routes/pharmaRoute"),
+  hospitalRouter = require("./routes/hospitalRoute"),
+  doctorRouter = require("./routes/doctorRoute"),
   authRouter = require("./routes/authRoute");
 
 //declerations
@@ -27,8 +30,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 //routers
-app.use("/", indexRouter);
-app.use("/", authRouter);
+app.use("/", indexRouter, authRouter, hospitalRouter, doctorRouter, pharmaRouter);
 
 //crash reporting
 app.use((err, req, res, next) => {
