@@ -14,6 +14,7 @@ const { SendError } = require("./services/error"),
   pharmaRouter = require("./routes/pharmaRoute"),
   hospitalRouter = require("./routes/hospitalRoute"),
   doctorRouter = require("./routes/doctorRoute"),
+  patientRouter = require("./routes/patientRoute"),
   authRouter = require("./routes/authRoute");
 
 //declerations
@@ -30,7 +31,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 //routers
-app.use("/", indexRouter, authRouter, hospitalRouter, doctorRouter, pharmaRouter);
+app.use("/", indexRouter, authRouter, hospitalRouter, doctorRouter, pharmaRouter, patientRouter);
 
 //crash reporting
 app.use((err, req, res, next) => {
