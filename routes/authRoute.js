@@ -1,9 +1,6 @@
 const auth = require("../services/auth");
 const router = require("express").Router();
 
-router.get("/login", (req, res) => {
-  res.render("login");
-});
 
 // Pharma Section
 router.get("/pharma/register", (req, res) => {
