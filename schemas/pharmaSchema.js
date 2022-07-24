@@ -22,7 +22,6 @@ const pharmaSchema = new mongoose.Schema(
     zip: reqString,
     country: reqString,
     name: reqString,
-    username: reqString,
     password: reqString,
   },
   { timestamps: true }

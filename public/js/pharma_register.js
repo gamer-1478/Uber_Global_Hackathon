@@ -12,7 +12,6 @@ registerBtn.addEventListener("click", async (e) => {
   const zip = document.querySelector("#zip").value;
   const country = document.querySelector("#country").value;
   const name = document.querySelector("#name").value;
-  const username = document.querySelector("#username").value;
   const password = document.querySelector("#password").value;
   const confirmpassword = document.querySelector("#confirmPassword").value;
   fetch("/pharma/register", {
@@ -32,7 +31,6 @@ registerBtn.addEventListener("click", async (e) => {
       zip,
       country,
       name,
-      username,
       password,
       confirmpassword,
     }),
