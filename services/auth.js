@@ -56,7 +56,7 @@ module.exports = {
     try {
       const savedPharma = await newPharma.save();
 
-      //   will login and register together
+      // will login and register together
       const token = jwt.sign(
         {
           id: savedPharma._id,
