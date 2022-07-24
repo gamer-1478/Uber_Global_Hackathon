@@ -19,7 +19,6 @@ module.exports = {
       zip,
       country,
       name,
-      username,
       password,
       confirmpassword,
     } = req.body;
@@ -52,14 +51,13 @@ module.exports = {
       zip,
       country,
       name,
-      username,
       password: hashedPassword,
     });
 
     try {
       const savedPharma = await newPharma.save();
 
-      //   will login and register together
+      // will login and register together
       const token = jwt.sign(
         {
           id: savedPharma._id,
@@ -90,15 +88,15 @@ module.exports = {
   },
   loginPharma: async (req, res) => {
     try {
-      const username = req.body.username;
+      const email = req.body.email;
       const password = req.body.password;
-      if (!username || !password) {
+      if (!email || !password) {
         return res.status(400).json({
           message: "Please enter all fields",
         });
       }
       // check if user exists
-      const user = await pharma.findOne({ username });
+      const user = await pharma.findOne({ email });
       if (!user) {
         return res.status(400).json({
           message: "User does not exist",
